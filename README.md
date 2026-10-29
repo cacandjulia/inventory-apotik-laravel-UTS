@@ -30,12 +30,12 @@ composer install --no-security-blocking
 copy .env.example .env        # di Linux/Mac: cp .env.example .env
 php artisan key:generate
 ```
-Buat database kosong bernama `apotik_lilac` di MySQL (phpMyAdmin), lalu atur di `.env`:
+Buat database kosong bernama `apotik_laravel` di MySQL (lewat HeidiSQL di Laragon: klik tombol **Database**, atau klik kanan `Laragon.MySQL` lalu **Create new → Database**; pengguna XAMPP bisa memakai phpMyAdmin), lalu atur di `.env`:
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
 DB_PORT=3306
-DB_DATABASE=apotik_lilac
+DB_DATABASE=apotik_laravel
 DB_USERNAME=root
 DB_PASSWORD=
 ```
@@ -50,9 +50,9 @@ Buka http://127.0.0.1:8000 di browser.
 ## 6. Demo account
 | Role | Email | Kata sandi |
 |---|---|---|
-| Admin | admin@apotik.test | cacabaikhati |
-| Staff | staff@apotik.test | sukasukacaca |
-| Pembeli | pembeli@apotik.test | pembeli12345 |
+| Admin | myapotik@gmail.com | cacabaikhati |
+| Staff | staffapotik@gmail.com | sukasukacaca |
+| Pembeli | acu@gmail.com | pembeli12345 |
 
 Akun dibuat oleh `database/seeders/DatabaseSeeder.php` dan `PembeliSeeder.php`. Kata sandi otomatis di-hash.
 Pengunjung baru juga bisa mendaftar sendiri lewat halaman Daftar (otomatis menjadi Pembeli).
@@ -86,27 +86,33 @@ Versi teks (Mermaid, tampil otomatis di GitHub):
 
 ```mermaid
 erDiagram
-    users ||--o{ sales : "melakukan"
-    users ||--o{ purchases : "mencatat"
-    categories ||--o{ products : "mengelompokkan"
-    suppliers ||--o{ purchases : "memasok"
-    sales ||--|{ sale_items : "berisi"
-    purchases ||--|{ purchase_items : "berisi"
-    products ||--o{ sale_items : "terjual di"
-    products ||--o{ purchase_items : "dibeli di"
-
-    users { bigint id PK
+    users ||--o{ sales : melakukan
+    users ||--o{ purchases : mencatat
+    categories ||--o{ products : mengelompokkan
+    suppliers ||--o{ purchases : memasok
+    sales ||--|{ sale_items : berisi
+    purchases ||--|{ purchase_items : berisi
+    products ||--o{ sale_items : terjual_di
+    products ||--o{ purchase_items : dibeli_di
+    users {
+        bigint id PK
         string name
         string email UK
         string password
-        string role "admin|staff|pembeli" }
-    categories { bigint id PK
-        string name UK }
-    suppliers { bigint id PK
+        string role
+    }
+    categories {
+        bigint id PK
+        string name UK
+    }
+    suppliers {
+        bigint id PK
         string name
         string phone
-        string email }
-    products { bigint id PK
+        string email
+    }
+    products {
+        bigint id PK
         bigint category_id FK
         string sku UK
         string name
@@ -114,32 +120,41 @@ erDiagram
         decimal selling_price
         int stock
         int minimum_stock
-        timestamp deleted_at }
-    purchases { bigint id PK
+        timestamp deleted_at
+    }
+    purchases {
+        bigint id PK
         bigint supplier_id FK
         bigint user_id FK
         string purchase_number UK
         decimal total
         string status
-        timestamp purchased_at }
-    purchase_items { bigint id PK
+        timestamp purchased_at
+    }
+    purchase_items {
+        bigint id PK
         bigint purchase_id FK
         bigint product_id FK
         int quantity
         decimal unit_cost
-        decimal subtotal }
-    sales { bigint id PK
+        decimal subtotal
+    }
+    sales {
+        bigint id PK
         bigint user_id FK
         string sale_number UK
         decimal total
         string status
-        timestamp sold_at }
-    sale_items { bigint id PK
+        timestamp sold_at
+    }
+    sale_items {
+        bigint id PK
         bigint sale_id FK
         bigint product_id FK
         int quantity
         decimal unit_price
-        decimal subtotal }
+        decimal subtotal
+    }
 ```
 
 ### Penjelasan relasi
