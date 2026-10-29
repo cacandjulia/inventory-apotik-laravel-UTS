@@ -30,7 +30,7 @@ composer install --no-security-blocking
 copy .env.example .env        # di Linux/Mac: cp .env.example .env
 php artisan key:generate
 ```
-Buat database kosong bernama `apotik_laravel` di MySQL (lewat HeidiSQL di Laragon: klik tombol **Database**, atau klik kanan `Laragon.MySQL` lalu **Create new → Database**; pengguna XAMPP bisa memakai phpMyAdmin), lalu atur di `.env`:
+Buat database kosong bernama `apotik_laravel` di MySQL (lewat HeidiSQL di Laragon: klik tombol **Database**, atau klik kanan `Laragon.MySQL` lalu **Create new → Database**), lalu atur di `.env`:
 ```
 DB_CONNECTION=mysql
 DB_HOST=127.0.0.1
