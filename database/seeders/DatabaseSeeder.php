@@ -18,7 +18,7 @@ class DatabaseSeeder extends Seeder
 
         $cat = collect(['Vitamin', 'P3K', 'Obat Herbal'])->mapWithKeys(fn ($n) => [$n => Category::create(['name' => $n])->id]);
 
-        Supplier::create(['name' => 'PT Sehat Sentosa', 'phone' => '0852967388022', 'email' => 'sehatsentosa@gmail.com']);
+        Supplier::create(['name' => 'PT Sehat Sentosa', 'phone' => '085296738802', 'email' => 'sehatsentosa@gmail.com']);
         Supplier::create(['name' => 'CV Herbal Nusantara', 'phone' => '081273409588', 'email' => 'orderHerbalN@gmail.com']);
 
         // [kategori, sku, nama, harga beli, harga jual, stok, stok minimum]
