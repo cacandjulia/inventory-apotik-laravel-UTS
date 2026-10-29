@@ -13,13 +13,13 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // ===== AKUN DEMO (password otomatis di-hash oleh cast 'hashed' di model User) =====
-        User::create(['name' => 'Admin Apotik', 'email' => 'admin@apotik.test', 'password' => 'cacabaikhati', 'role' => 'admin']);
-        User::create(['name' => 'Staff Apotik', 'email' => 'staff@apotik.test', 'password' => 'sukasukacaca', 'role' => 'staff']);
+        User::create(['name' => 'Admin Apotik', 'email' => 'myapotik@gmail.com', 'password' => 'cacabaikhati', 'role' => 'admin']);
+        User::create(['name' => 'Staff Apotik', 'email' => 'staffapotik@gmail.com', 'password' => 'sukasukacaca', 'role' => 'staff']);
 
         $cat = collect(['Vitamin', 'P3K', 'Obat Herbal'])->mapWithKeys(fn ($n) => [$n => Category::create(['name' => $n])->id]);
 
-        Supplier::create(['name' => 'PT Sehat Sentosa', 'phone' => '0811000111', 'email' => 'sales@sehatsentosa.test']);
-        Supplier::create(['name' => 'CV Herbal Nusantara', 'phone' => '0811000222', 'email' => 'order@herbalnusantara.test']);
+        Supplier::create(['name' => 'PT Sehat Sentosa', 'phone' => '0852967388022', 'email' => 'sehatsentosa@gmail.com']);
+        Supplier::create(['name' => 'CV Herbal Nusantara', 'phone' => '081273409588', 'email' => 'orderHerbalN@gmail.com']);
 
         // [kategori, sku, nama, harga beli, harga jual, stok, stok minimum]
         $products = [

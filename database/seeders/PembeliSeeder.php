@@ -11,8 +11,8 @@ class PembeliSeeder extends Seeder
     {
         // firstOrCreate: aman dijalankan berulang (tidak membuat akun ganda)
         User::firstOrCreate(
-            ['email' => 'pembeli@apotik.test'],
-            ['name' => 'Pembeli Demo', 'password' => 'pembeli12345', 'role' => 'pembeli']
+            ['email' => 'acu@gmail.com'],
+            ['name' => 'Pembeli Demo', 'password' => '87654321', 'role' => 'pembeli']
         );
     }
 }
